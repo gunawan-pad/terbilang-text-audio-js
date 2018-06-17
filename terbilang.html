@@ -48,7 +48,7 @@
 	<h2>Tes Terbilang</h2>
 
 	<label>Angka: </label><br>
-	<input type="text" id="input1" name="" value="234,222" placeholder="input angka">
+	<input type="text" id="input1" name="" value="93410,046" placeholder="input angka">
 	<br/>
 	<label>Hasil text: </label><br>
 	<textarea id="output" placeholder="output text"></textarea><br>
@@ -56,18 +56,19 @@
 
 	<script type="text/javascript">
 
-		var terbConfig = {
-			audioDir : 'audio',
-			audioExt : 'mp3'
+		var config = {
+			audioDir : 'audio', // direktori ke file audio
+			audioExt : 'mp3' // file ekstensi audio
 		};
-		var oTerbilang = new Terbilang(terbConfig);
+		var ot = new Terbilang(config);
 
-		oTerbilang.floatMaxLen = 5;
+		ot.floatMaxLen = 5; // digit di belakang koma
+		// ot.comma = ","; // karakter koma, bisa diganti titik
 
 		function _terbilang() {
-			$('#output').val(oTerbilang.terbilangFloat($('#input1').val()));
-			var data = $('#output').val();
-			oTerbilang.terbilangAudio(data, 0);
+			var text = ot.terbilangFloat($('#input1').val()); // hasil text
+			$('#output').val(ot.sambungSe(text)); 
+			ot.terbilangAudio(text, 0); // audio
 		}
 
 	</script>
