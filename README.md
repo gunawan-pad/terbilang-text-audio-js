@@ -11,11 +11,15 @@ var config = {
 	audioExt : 'mp3' // ekstensi file audio
 };
 var ot = new Terbilang(config),
-    angka = "123,001",
+    angka = "10513,001",
     delay = 1;// tunda 1 detik
 
-var outString = ot.terbilangFloat(angka); // text
-ot.terbilangAudio(outString, delay); // audio
+ot.floatMaxLen = 5; // digit di belakang koma
+// ot.comma = ","; // karakter koma, bisa diganti titik
+
+var outString = ot.terbilangFloat(angka); // text terbilang
+ot.terbilangAudio(outString, delay); // audio terbilang
+outString = ot.sambungSe(outString); // menyambung se puluh menjadi sepuluh
 
 ```
 
