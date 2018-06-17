@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Gunawan Pad, Tes Terbilang</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="js/terbilang.js"></script>
+	<style type="text/css">
+		* {
+		    margin: 0;
+		    padding: 0;
+		}
+		body, input, textarea, button, label{
+			font-size: 14px;
+		    font-family: "segoe ui", "zilla slab", "open sans", sans-serif;
+			font-weight: 400;
+		}
+		body{
+			line-height: 30px;
+		}
+
+		input, textarea{
+			width: 200px;
+		}
+
+		textarea{
+			height: 150px;
+		}
+
+		h2 {
+    		border-bottom: 1px solid #818181;
+		}
+
+		.page-wrap {
+			width: 200px;
+		    display: block;
+		    padding: 30px;
+		    margin-bottom: 30px;
+		}
+
+		code,pre{
+			font-family: 'consolas' !important;
+		}
+	</style>
+</head>
+<body>
+<div id="top" class="page-wrap">
+	<h2>Tes Terbilang</h2>
+
+	<label>Angka: </label><br>
+	<input type="text" id="input1" name="" value="234,222" placeholder="input angka">
+	<br/>
+	<label>Hasil text: </label><br>
+	<textarea id="output" placeholder="output text"></textarea><br>
+	<button onclick="_terbilang();">Terbilang</button>
+
+	<script type="text/javascript">
+
+		var terbConfig = {
+			audioDir : 'audio',
+			audioExt : 'mp3'
+		};
+		var oTerbilang = new Terbilang(terbConfig);
+
+		oTerbilang.floatMaxLen = 5;
+
+		function _terbilang() {
+			$('#output').val(oTerbilang.terbilangFloat($('#input1').val()));
+			var data = $('#output').val();
+			oTerbilang.terbilangAudio(data, 0);
+		}
+
+	</script>
+
+	<br>
+	<br>
+	<div>
+	terbilang.indonesia.text.audio.js
+    Copyright (C) 2018  Gunawan Padnanto
+
+	</div>
+</div>
+</body>
+</html>
