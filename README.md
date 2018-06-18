@@ -12,9 +12,9 @@ var config = {
 };
 var ot = new Terbilang(config),
     angka = "10513,001",
-    delay = 1;// tunda 1 detik
+    delay = 1000;// tunda 1 detik
 
-ot.floatMaxLen = 5; // digit di belakang koma
+ot.floatMaxLen = 5; // batas digit di belakang yang akan diproses
 // ot.comma = ","; // karakter koma, bisa diganti titik
 
 var outString = ot.terbilangFloat(angka); // text terbilang

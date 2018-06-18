@@ -8,14 +8,15 @@ function Terbilang(config) {
 
 Terbilang.prototype.comma = ',';
 Terbilang.prototype.floatMaxLen = 2;
-Terbilang.prototype.strComma = ' koma ';
+Terbilang.prototype.strComma = 'koma';
 
 Terbilang.prototype.audioDir = '';
 Terbilang.prototype.audioExt = 'mp3';
 
-Terbilang.prototype.arrSatuan = ["nol ", "se ", "dua ", "tiga ", "empat ", "lima ", "enam ", "tujuh ", "delapan ", "sembilan "];
+Terbilang.prototype.arrSatuan = ["nol", "se", "dua", "tiga", "empat", 
+	"lima", "enam", "tujuh", "delapan", "sembilan"];
 
-Terbilang.prototype._3an = ["", "ribu ", "juta ", "miliar ", 
+Terbilang.prototype._3an = ["", "ribu", "juta", "miliar", 
 	"triliun ", "kuadriliun ", "kuantiliun ", "sekstiliun ",
 	"septiliun ", "oktiliun ", "noniliun ", "desiliun "
 ];
@@ -53,7 +54,6 @@ Terbilang.prototype.cleanInput = function(strInput) {
 parse, split to int and float value array
 */
 Terbilang.prototype.parseInput = function(strInput) {
-
 	// cek is valid input (numbers and comma only)
 	var re = new RegExp("[^\\d" + this.comma + "]+", "mg");
 	if (strInput !== strInput.replace(re, '')) return [];
@@ -61,7 +61,6 @@ Terbilang.prototype.parseInput = function(strInput) {
 	return strInput.split(this.comma).map(function(elem, i) {
 		return elem === "" ? "0" : elem;
 	})
-
 }
 
 Terbilang.prototype.terbilangFloat = function(strInput) {
@@ -70,7 +69,6 @@ Terbilang.prototype.terbilangFloat = function(strInput) {
 	var arrVals = this.parseInput(strInput),
 		arrAll = [], fval;
 
-	console.log('arrVals:' + arrVals);
 	if (arrVals.length === 0) return '';
 
 	// process int val
@@ -82,7 +80,6 @@ Terbilang.prototype.terbilangFloat = function(strInput) {
 	}
 
 	return this.RES(arrAll.join(" ")).replace(/^satu ribu/, "se ribu");
-
 }
 
 /*
@@ -95,7 +92,6 @@ Terbilang.prototype.terbilangPlain = function(strInput) {
 			return elem === '1' ? 'satu' : _as[parseInt(elem)];
 		}).join(' ')
 	);
-
 }
 
 Terbilang.prototype.processGrp3 = function(g3) {
@@ -125,7 +121,7 @@ Terbilang.prototype.processGrp3 = function(g3) {
 	}
 
 	return arrRes.join(" ");
-} // function
+}
 
 Terbilang.prototype.terbilang = function(strInput) {
 
@@ -155,14 +151,9 @@ Terbilang.prototype.terbilangAudio = function(strTerbilang, iDelay) {
 		i = 0, snd;
 
 	! function SPS() {
-
 		if (i >= words.length) return;
-
-		snd = new Audio(audioDir + '/' + words[i] + '.' + audioExt);
-		snd.addEventListener('ended',
-			function() {setTimeout(SPS, iDelay)}
-		);
-
+		snd = new Audio(audioDir + '/' + words[i] + '.' + audioExt),
+		snd.addEventListener('ended', function() {setTimeout(SPS, iDelay)});
 		snd.play(), i++
 	}();
 }
